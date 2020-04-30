@@ -67,10 +67,10 @@ public class Dostizhenie {
     public void setDateD(String dateD) {
         this.DateD.set(dateD);
     }
-    public String toString()
+    public String record()
     {
 
-        return  id+""+NameD.get()+""+OpisanieD.get()+""+DateD.get() ;
+        return  id+""+NameD+""+OpisanieD+""+DateD ;
     }
 
 }

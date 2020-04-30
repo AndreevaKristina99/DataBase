@@ -35,4 +35,49 @@ private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLExce
 
     return dostizhenie;
 }
+
+    public static ObservableList<Dostizhenie> searchDostizhenie (String questionSelect) throws SQLException, ClassNotFoundException {
+
+        String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " = '" + questionSelect + "';";
+        try {
+
+            ResultSet rsQue = DBConnection.dbExecuteQuery(selectStmt);
+
+            ObservableList<Dostizhenie> questListFind = FXCollections.observableArrayList();
+            while (rsQue.next()) {
+                Dostizhenie que = getQuestionFromResultSet(rsQue);
+                questListFind.add(que);
+            }
+            //Return employee object
+            return questListFind;
+        } catch (SQLException e) {
+            System.out.println("While searching an question with " + questionSelect + " question, an error occurred: " + e
+                    + ". Method: searchDostizhenie");
+            //Return exception
+            throw e;
+        }
+
+    }
+    // yдаление  из бд||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    public static void deleteDostizhenie (String NameD) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt = "DELETE FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " = '" +NameD + "';";
+        try {
+            DBConnection.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e + ". Method: deleteQuestWithId()");
+            throw e;
+        }
+    }
+    //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException {
+        String updateStmt = "INSERT INTO " + DBConnection.DBName + "(NameD,OpisanieD,DateD) VALUES (" + dostizhenie.record() + ");";
+        try {
+            DBConnection.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Ошибка вставки: " + e + ". Method: insertQuest()");
+            throw e;
+        }
+    }
+
 }
