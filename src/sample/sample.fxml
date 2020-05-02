@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,14 +18,14 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="354.0" prefWidth="612.0">
+      <AnchorPane prefHeight="479.0" prefWidth="724.0">
          <children>
-            <TableView fx:id="tableD" layoutX="69.0" layoutY="82.0" prefHeight="200.0" prefWidth="448.0">
+            <TableView fx:id="tableD" layoutX="69.0" layoutY="82.0" prefHeight="303.0" prefWidth="592.0">
               <columns>
                 <TableColumn fx:id="idD" prefWidth="75.0" text="номер" />
-                <TableColumn fx:id="NameD" prefWidth="118.0" text="название" />
-                  <TableColumn fx:id="opisanieD" prefWidth="116.0" text="описание" />
-                  <TableColumn fx:id="DateD" prefWidth="121.0" text="дата получения" />
+                <TableColumn fx:id="NameD" prefWidth="177.0" text="название" />
+                  <TableColumn fx:id="opisanieD" prefWidth="177.0" text="описание" />
+                  <TableColumn fx:id="DateD" prefWidth="162.0" text="дата получения" />
               </columns>
             </TableView>
             <Button layoutX="426.0" layoutY="43.0" mnemonicParsing="false" onAction="#openSql" text="Заполнить" />
@@ -32,6 +33,8 @@
             <Button layoutX="426.0" layoutY="14.0" mnemonicParsing="false" onAction="#poisk" prefHeight="25.0" prefWidth="74.0" text="Найти" />
             <Button layoutX="516.0" layoutY="14.0" mnemonicParsing="false" onAction="#M_delete" prefHeight="25.0" prefWidth="74.0" text="Удалить по названию" />
             <Button layoutX="517.0" layoutY="43.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="74.0" text="Добавить" />
+            <ImageView fx:id="images" fitHeight="276.0" fitWidth="200.0" layoutX="516.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="69.0" layoutY="415.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" />
          </children></AnchorPane>
    </children>
 </GridPane>

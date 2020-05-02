@@ -11,12 +11,14 @@ public class Dostizhenie {
     SimpleStringProperty NameD;
     SimpleStringProperty OpisanieD;
     SimpleStringProperty DateD;
+    SimpleStringProperty image;
 
-    public Dostizhenie(int id, String nameD,String opisanieD, String dateD) {
+    public Dostizhenie(int id, String nameD,String opisanieD, String dateD, String image) {
         this.id = new SimpleIntegerProperty(id);
        this.NameD =new SimpleStringProperty(nameD);
        this.OpisanieD =new SimpleStringProperty(opisanieD);
       this.DateD =new SimpleStringProperty(dateD);
+      this.image=new SimpleStringProperty(image);
 
     }
 
@@ -34,6 +36,18 @@ public class Dostizhenie {
 
     public String getNameD() {
         return NameD.get();
+    }
+
+    public String getImage() {
+        return image.get();
+    }
+
+    public SimpleStringProperty imageProperty() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image.set(image);
     }
 
     public SimpleStringProperty nameDProperty() {

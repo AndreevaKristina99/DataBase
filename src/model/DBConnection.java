@@ -17,6 +17,7 @@ public class DBConnection {
         public static final String NAMEDOSTIZHENIE = "NameDostizheniy";
         public static final String OPISANIE = "Opisanie";
         public static final String DATEPOL = "DatePol";
+        public  static  final  String IMAGES="image";
     }
     //соеденяемся
 private  static  Connection getDBConnection()

@@ -27,11 +27,12 @@ public static  ObservableList<Dostizhenie> searchList() throws SQLException, Cla
 
 //формирует экземпляр списка достижений из вернувшегося ответа
 private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLException {
-   Dostizhenie dostizhenie = new Dostizhenie(1,"jj","hhh","2020");
+   Dostizhenie dostizhenie = new Dostizhenie(1,"jj","hhh","2020","kk");
     dostizhenie.setId(rs.getInt(DBConnection.nameCol.ID));
     dostizhenie.setNameD(rs.getString(DBConnection.nameCol.NAMEDOSTIZHENIE));
     dostizhenie.setOpisanieD(rs.getString(DBConnection.nameCol.OPISANIE));//получение по столбцу в БД
     dostizhenie.setDateD(rs.getString(DBConnection.nameCol.DATEPOL));
+    dostizhenie.setImage(rs.getString(DBConnection.nameCol.IMAGES));
 
     return dostizhenie;
 }
