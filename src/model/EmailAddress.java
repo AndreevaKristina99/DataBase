@@ -11,7 +11,7 @@ public class EmailAddress {
     public void  emailaddress(){
     String to = "andreeva.cr1stin@yandex.ru";//от
     String from = "kandreeva952@gmail.com";//кому-далее считать с поля формы
-    String host = "127.0.0.1";//хост яндекса
+    String host = "587";//хост яндекса
     Properties properties = System.getProperties();
         properties.setProperty("smtp.yandex.ru", host);//протокол смтп яндекс
 
