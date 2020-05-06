@@ -70,6 +70,12 @@ private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLExce
             throw e;
         }
     }
+
+    //возвр одно поле имадже селектом ,где id =id в этом
+
+
+
+
     //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException {
         String updateStmt = "INSERT INTO " + DBConnection.DBName + "(NameD,OpisanieD,DateD) VALUES (" + dostizhenie.record() + ");";
