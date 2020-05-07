@@ -14,10 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
+import model.BarCode;
 import model.Dostizhenie;
 import model.EmailAddress;
 import model.ListDostizhenie;
@@ -57,13 +59,9 @@ public class Controller implements Initializable {
         opisanieD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("OpisanieD"));
         DateD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("DateD"));
 
-          File file=new File("C:\\images\\kursk.jpg");
+          File file=new File("C:\\images\\ex.pdf");
          Image image = new Image(file.toURI().toString());
         images.setImage(image);
-        //File file=new File("C:\\images\\kursk.jpg");
-       // File file = new File("image");
-       // Image image = new Image(file.toURI().toString());
-
         System.out.println(file);
     }
 
@@ -89,7 +87,7 @@ public class Controller implements Initializable {
             dostizhenieObservableList = ListDostizhenie.searchDostizhenie(findString);
             tableD.setItems(dostizhenieObservableList);
         } catch (SQLException sqlEx) {
-            System.out.println("Error occurred while getting questions information from DB.\n" + sqlEx + ". Method: findQuestion()");
+            System.out.println("ошибка поиска достижений.\n" + sqlEx + ". Method: findQuestion()");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -131,19 +129,34 @@ public class Controller implements Initializable {
     }
 
     public void code(ActionEvent actionEvent) {
+        BarCode barCode=new BarCode();
+    barCode.barCode(anchorPane,images);
 
-        Code128Bean bean = new Code128Bean();
-        final int dpi = 50;
-        bean.setModuleWidth(UnitConv.in2mm(1.0f / dpi)); //makes the narrow bar
-        bean.doQuietZone(false);
-        BitmapCanvasProvider canvas =
-                new BitmapCanvasProvider (160, BufferedImage.TYPE_BYTE_BINARY,
-                        false, 0);
-        bean.generateBarcode (canvas,"1234567889");
-        BufferedImage bufferedImage = canvas.getBufferedImage ();
-      images = new ImageView ();
-        images.setImage (SwingFXUtils.toFXImage (bufferedImage, null));
-        anchorPane.getChildren ().add (images);
+    }
+
+    public void img(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+
+        Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();
+        if (dostizhenie != null) {
+            try {
+
+                Image path= ListDostizhenie.imagesDostizhenie(dostizhenie.getId());
+                ObservableList<Dostizhenie> dostizhenieObservableList = ListDostizhenie.searchList();
+                File file=new File("path");
+
+               Image image = new Image(file.toURI().toString());
+                images.setImage(image);
+            } catch (SQLException | ClassNotFoundException e) {
+                System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
+                throw e;
+            }
+        } else System.out.println("Не выбрана строка в таблице!");
+    }
+
+    public void imTabOpen(MouseEvent mouseEvent) {
+        System.out.println("клик!");
+        //перенести код из кнопки изображение
 
     }
 }
+

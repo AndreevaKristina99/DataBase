@@ -2,7 +2,10 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -49,12 +52,10 @@ private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLExce
                 Dostizhenie que = getQuestionFromResultSet(rsQue);
                 questListFind.add(que);
             }
-            //Return employee object
             return questListFind;
         } catch (SQLException e) {
             System.out.println("While searching an question with " + questionSelect + " question, an error occurred: " + e
                     + ". Method: searchDostizhenie");
-            //Return exception
             throw e;
         }
 
@@ -72,6 +73,27 @@ private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLExce
     }
 
     //возвр одно поле имадже селектом ,где id =id в этом
+
+
+    ///вернуть изображение достижения
+    public static Image imagesDostizhenie (int id) throws SQLException, ClassNotFoundException {
+//SELECT image FROM dostixhenie where id=2 ;
+        String selectteStmt = "SELECT "+DBConnection.nameCol.IMAGES+"FROM" + DBConnection.DBName + " WHERE " + DBConnection.nameCol.ID + " = '" +id + "';";
+        try {
+            ResultSet resultSet=DBConnection.dbExecuteQuery(selectteStmt);
+            Dostizhenie dostizhenie=getQuestionFromResultSet(resultSet);
+           String path=dostizhenie.getImage();//получаем строку с путем к файлу
+            Image image=new Image(String.valueOf(new File(path)));
+            System.out.println(""+path);
+            return  image;
+
+        } catch (SQLException e) {
+            System.out.print("Ошибка получения изображения " + e + ". Method: imagesDostizhenie()");
+            throw e;
+        }
+
+
+    }
 
 
 

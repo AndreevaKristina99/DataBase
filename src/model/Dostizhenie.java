@@ -84,7 +84,7 @@ public class Dostizhenie {
     public String record()
     {
 
-        return  id+""+NameD+""+OpisanieD+""+DateD ;
+        return  id+""+NameD+""+OpisanieD+""+DateD+""+image;
     }
 
 }

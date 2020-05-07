@@ -20,7 +20,7 @@
    <children>
       <AnchorPane fx:id="anchorPane" prefHeight="479.0" prefWidth="724.0">
          <children>
-            <TableView fx:id="tableD" layoutX="69.0" layoutY="82.0" prefHeight="276.0" prefWidth="566.0">
+            <TableView fx:id="tableD" layoutX="69.0" layoutY="82.0" onMouseClicked="#imTabOpen" prefHeight="276.0" prefWidth="566.0">
               <columns>
                 <TableColumn fx:id="idD" prefWidth="75.0" text="номер" />
                 <TableColumn fx:id="NameD" prefWidth="177.0" text="название" />
@@ -35,7 +35,8 @@
             <Button layoutX="517.0" layoutY="43.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="74.0" text="Добавить" />
             <ImageView fx:id="images" fitHeight="276.0" fitWidth="245.0" layoutX="657.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="69.0" layoutY="415.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" />
-            <Button layoutX="624.0" layoutY="14.0" mnemonicParsing="false" onAction="#code" text="Button" />
+            <Button layoutX="624.0" layoutY="14.0" mnemonicParsing="false" onAction="#code" text="Штрих-код" />
+            <Button layoutX="754.0" layoutY="384.0" mnemonicParsing="false" onAction="#img" text="Изображение" />
          </children></AnchorPane>
    </children>
 </GridPane>
