@@ -8,21 +8,22 @@ import java.util.Date;
 
 public class Dostizhenie {
     SimpleIntegerProperty id;
-    SimpleStringProperty NameD;
-    SimpleStringProperty OpisanieD;
-    SimpleStringProperty DateD;
+    SimpleStringProperty NameDostizheniy;
+    SimpleStringProperty Opisanie;
+    SimpleStringProperty DatePol;
     SimpleStringProperty image;
 
     public Dostizhenie(int id, String nameD,String opisanieD, String dateD, String image) {
         this.id = new SimpleIntegerProperty(id);
-       this.NameD =new SimpleStringProperty(nameD);
-       this.OpisanieD =new SimpleStringProperty(opisanieD);
-      this.DateD =new SimpleStringProperty(dateD);
+       this.NameDostizheniy =new SimpleStringProperty(nameD);
+       this.Opisanie =new SimpleStringProperty(opisanieD);
+      this.DatePol =new SimpleStringProperty(dateD);
       this.image=new SimpleStringProperty(image);
 
     }
 
     public int getId() {
+
         return id.get();
     }
 
@@ -35,7 +36,7 @@ public class Dostizhenie {
     }
 
     public String getNameD() {
-        return NameD.get();
+        return NameDostizheniy.get();
     }
 
     public String getImage() {
@@ -51,40 +52,40 @@ public class Dostizhenie {
     }
 
     public SimpleStringProperty nameDProperty() {
-        return NameD;
+        return NameDostizheniy;
     }
 
     public void setNameD(String nameD) {
-        this.NameD.set(nameD);
+        this.NameDostizheniy.set(nameD);
     }
 
     public String getOpisanieD() {
-        return OpisanieD.get();
+        return Opisanie.get();
     }
 
     public SimpleStringProperty opisanieDProperty() {
-        return OpisanieD;
+        return Opisanie;
     }
 
     public void setOpisanieD(String opisanieD) {
-        this.OpisanieD.set(opisanieD);
+        this.Opisanie.set(opisanieD);
     }
 
     public String getDateD() {
-        return DateD.get();
+        return DatePol.get();
     }
 
     public SimpleStringProperty dateDProperty() {
-        return DateD;
+        return DatePol;
     }
 
     public void setDateD(String dateD) {
-        this.DateD.set(dateD);
+        this.DatePol.set(dateD);
     }
     public String record()
     {
 
-        return  id+""+NameD+""+OpisanieD+""+DateD+""+image;
+        return  id+""+NameDostizheniy+""+Opisanie+""+DatePol+""+image;
     }
 
 }

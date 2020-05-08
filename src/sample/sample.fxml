@@ -36,7 +36,6 @@
             <ImageView fx:id="images" fitHeight="276.0" fitWidth="245.0" layoutX="657.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="69.0" layoutY="415.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" />
             <Button layoutX="624.0" layoutY="14.0" mnemonicParsing="false" onAction="#code" text="Штрих-код" />
-            <Button layoutX="754.0" layoutY="384.0" mnemonicParsing="false" onAction="#img" text="Изображение" />
          </children></AnchorPane>
    </children>
 </GridPane>

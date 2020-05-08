@@ -19,52 +19,7 @@ import javax.mail.internet.MimeMultipart;
 public class EmailAddress {
 
     public void  emailaddress(AnchorPane ap){
-        /*
-        Properties properties= new Properties();
-        properties.put("mail.smtp.host","smtp.yandex.ru");
-        properties.put("mail.smtp.socketFactory.port",465);
-        properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-        properties.put("mail.smtp.auth","true");
-        properties.put("mail.smtp.port",465);
-        Session s=Session.getDefaultInstance(properties,
-                new javax.mail.Authenticator()
-                {protected PasswordAuthentication getPasswordAuthentication()
-                {
-                    return  new PasswordAuthentication("andreeva.cr1stin@yandex.ru", "Andr!1999"); }});
-        try {
-            Message message=new MimeMessage(s);
-            message.setFrom( new InternetAddress("andreeva.cr1stin@yandex.ru"));//
-            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("kandreeva952@gmail.com"));//получить из текстового поля
-            message.setSubject("тестовое письмо");//получить из текстового поля
-            message.setText("Проверка отправки письма");//получить из текстового поля
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
 
-            Multipart multipart = new MimeMultipart();
-
-            messageBodyPart = new MimeBodyPart();
-            FileChooser fileChooser = new FileChooser();//класс работы с диалоговым окном
-            fileChooser.setTitle("Выберите файл...");//заголовок диалога
-            //задает фильтр для указанного расшиерения
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.txt"),
-                    new FileChooser.ExtensionFilter("Файл", "*.docx"));
-            File file=fileChooser.showOpenDialog(anchorPane.getScene().getWindow());
-            String str=file.getPath();//получаем строку с путем к файлу
-            System.out.println(""+str);
-
-            //  String file = "C:\\images\\test.txt";
-         //   String fileName = "test.txt";//строка с названием файла
-
-            DataSource source = new FileDataSource(str);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(str);
-            multipart.addBodyPart(messageBodyPart);
-
-            message.setContent(multipart);
-
-            Transport.send(message);
-            System.out.println("Письмо отправлено");
-
-         */
         Properties properties= new Properties();
         properties.put("mail.smtp.host","smtp.yandex.ru");
         properties.put("mail.smtp.socketFactory.port",465);

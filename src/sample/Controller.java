@@ -19,22 +19,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.stage.Stage;
-import model.BarCode;
-import model.Dostizhenie;
-import model.EmailAddress;
-import model.ListDostizhenie;
-import org.krysalis.barcode4j.fop.BarcodeElement;
-import org.krysalis.barcode4j.impl.code128.Code128;
-import org.krysalis.barcode4j.impl.code128.Code128Bean;
-import org.krysalis.barcode4j.impl.code39.Code39;
-import org.krysalis.barcode4j.impl.code39.Code39Bean;
-import org.krysalis.barcode4j.output.CanvasProvider;
-import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
-import org.krysalis.barcode4j.tools.UnitConv;
-import org.krysalis.barcode4j.xalan.BarcodeExt;
+import model.*;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -50,8 +38,7 @@ public class Controller implements Initializable {
     public ImageView images;
     public Canvas canvas;
     public AnchorPane anchorPane;
-
-
+Main main;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("id"));
@@ -110,16 +97,18 @@ public class Controller implements Initializable {
         } else System.out.println("Не выбрана строка в таблице!");
     }
 
-    public void add(ActionEvent actionEvent) throws IOException {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("C:/newForm.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    public void add(ActionEvent actionEvent) throws IOException, SQLException {
+     //   Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();
+       // main.showCreateWindow(dostizhenie);
+     //   try{
+         //   DBConnection.;
+      //  }
+      //  catch (SQLException e){
+        //   System.out.println("Произошла следующая ошибка, пока выполнялся поиск ползователя в БД: " + e.getMessage());
+        //   throw e;
+   //    }
+
+
     }
 
     public void email(ActionEvent actionEvent) {
@@ -134,29 +123,21 @@ public class Controller implements Initializable {
 
     }
 
-    public void img(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void img(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, FileNotFoundException {
+    }
 
-        Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();
-        if (dostizhenie != null) {
+    public void imTabOpen(MouseEvent mouseEvent) throws FileNotFoundException, SQLException, ClassNotFoundException {
+
+        Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();//получаем выбр элем
+        if (dostizhenie != null) {//если не 0
             try {
-
-                Image path= ListDostizhenie.imagesDostizhenie(dostizhenie.getId());
-                ObservableList<Dostizhenie> dostizhenieObservableList = ListDostizhenie.searchList();
-                File file=new File("path");
-
-               Image image = new Image(file.toURI().toString());
-                images.setImage(image);
-            } catch (SQLException | ClassNotFoundException e) {
+                Image image= ListDostizhenie.imagesDostizhenie(dostizhenie.getId());//передает ид в листдостижений
+                images.setImage(image);//получаем путь и выводим картинку в имаджвью
+            } catch (SQLException | ClassNotFoundException | FileNotFoundException e) {
                 System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
                 throw e;
             }
         } else System.out.println("Не выбрана строка в таблице!");
-    }
-
-    public void imTabOpen(MouseEvent mouseEvent) {
-        System.out.println("клик!");
-        //перенести код из кнопки изображение
-
     }
 }
 
