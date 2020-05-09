@@ -1,5 +1,6 @@
 package sample;
 
+import controller.CreateController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +17,9 @@ public class Main extends Application {
 
     private Stage primaryStage;
     private Parent rootLayout;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Курсовая работа");
         showBaseWindow();
@@ -41,13 +43,13 @@ public class Main extends Application {
 
     }
 
-    public void showCreateWindow(Dostizhenie dostizhenie){
+    public void showCreateWindow(Dostizhenie dostizhenie) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("new.fxml"));
             Parent page = loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Новый пользователь...");
+            dialogStage.setTitle("Курсовая работа...");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             dialogStage.setScene(new Scene(page));
@@ -56,7 +58,7 @@ public class Main extends Application {
             dialogStage.getIcons().add(image);
             CreateController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-
+            controller.setDostizhenie(dostizhenie);
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,11 +92,11 @@ public class Main extends Application {
             CreateController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             /*controller.setStory(story);*/
-           // dialogStage.showAndWait();
-       // } catch (IOException e) {
-         //   e.printStackTrace();
-       // }
- //   }
+    // dialogStage.showAndWait();
+    // } catch (IOException e) {
+    //   e.printStackTrace();
+    // }
+    //   }
 
 
 }

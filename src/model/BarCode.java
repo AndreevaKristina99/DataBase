@@ -19,7 +19,7 @@ public class BarCode {
         BitmapCanvasProvider canvas =
                 new BitmapCanvasProvider(160, BufferedImage.TYPE_BYTE_BINARY,
                         false, 0);
-        bean.generateBarcode(canvas, "123456789");
+        bean.generateBarcode(canvas, "656565622511");
         BufferedImage bufferedImage = canvas.getBufferedImage();
        images = new ImageView();
        images.setImage(SwingFXUtils.toFXImage(bufferedImage, null));

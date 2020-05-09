@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateController">
+<AnchorPane fx:id="ap" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateController">
    <children>
       <DatePicker fx:id="dated" layoutX="389.0" layoutY="71.0" />
       <Label layoutX="54.0" layoutY="54.0" text="Название" />
@@ -16,5 +16,6 @@
       <Label layoutX="416.0" layoutY="33.0" text="Дата" />
       <Button layoutX="442.0" layoutY="138.0" mnemonicParsing="false" onAction="#files" text="Выбрать файл" />
       <Button layoutX="252.0" layoutY="235.0" mnemonicParsing="false" onAction="#adud" text="Добавить" />
+      <TextField fx:id="dateADD" layoutX="177.0" layoutY="151.0" />
    </children>
 </AnchorPane>

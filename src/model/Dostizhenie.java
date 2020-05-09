@@ -13,12 +13,12 @@ public class Dostizhenie {
     SimpleStringProperty DatePol;
     SimpleStringProperty image;
 
-    public Dostizhenie(int id, String nameD,String opisanieD, String dateD, String image) {
+    public Dostizhenie(int id, String nameD, String opisanieD, String dateD, String image) {
         this.id = new SimpleIntegerProperty(id);
-       this.NameDostizheniy =new SimpleStringProperty(nameD);
-       this.Opisanie =new SimpleStringProperty(opisanieD);
-      this.DatePol =new SimpleStringProperty(dateD);
-      this.image=new SimpleStringProperty(image);
+        this.NameDostizheniy = new SimpleStringProperty(nameD);
+        this.Opisanie = new SimpleStringProperty(opisanieD);
+        this.DatePol = new SimpleStringProperty(dateD);
+        this.image = new SimpleStringProperty(image);
 
     }
 
@@ -82,10 +82,13 @@ public class Dostizhenie {
     public void setDateD(String dateD) {
         this.DatePol.set(dateD);
     }
-    public String record()
-    {
 
-        return  id+""+NameDostizheniy+""+Opisanie+""+DatePol+""+image;
+    public String record() {
+        return /*"(NameDostizheniy, Opisanie, DatePol, image)"*/
+                "'" + getNameD() + "', "
+                + "'" + getOpisanieD() + "', "
+                + "'" + getDateD() + "', "
+                + "'" + getImage() + "'";
     }
 
 }
