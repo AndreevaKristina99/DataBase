@@ -57,7 +57,7 @@ public class ListDostizhenie {
     //поиск по NameD
     public static ObservableList<Dostizhenie> searchDostizhenieWithNameD(String questionSelect) throws SQLException, ClassNotFoundException {
 
-        String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " LIKE '%" + questionSelect + "%';";
+        String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " = '" + questionSelect + "';";
         try {
 
             ResultSet rsQue = DBConnection.dbExecuteQuery(selectStmt);

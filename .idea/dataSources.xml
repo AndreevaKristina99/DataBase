@@ -10,9 +10,9 @@
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="CONVERT_TO_NULL" />
         <property name="tinyInt1isBit" value="false" />
-        <property name="characterSetResults" value="cp1251" />
         <property name="yearIsDateType" value="false" />
         <property name="serverTimezone" value="Europe/Moscow" />
+        <property name="characterSetResults" value="latin1" />
       </driver-properties>
     </data-source>
   </component>

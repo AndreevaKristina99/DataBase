@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class EmailAddress {
 
-    public void emailaddress(AnchorPane ap) {
+    public void emailaddress(AnchorPane ap,String emAddress) {
 
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.yandex.ru");
@@ -37,8 +37,8 @@ public class EmailAddress {
         try {
             Message message = new MimeMessage(s);
             message.setFrom(new InternetAddress("andreeva.cr1stin@yandex.ru"));//
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("kandreeva952@gmail.com"));
-            message.setSubject("тестовое письмо");//тема письма
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emAddress/*"kandreeva952@gmail.com"*/));
+            message.setSubject("Резюме_Андреева К.А.");//тема письма
             message.setText("Проверка отправки письма");//текст письма
             MimeBodyPart messageBodyPart = new MimeBodyPart();
 

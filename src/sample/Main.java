@@ -64,39 +64,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-   /* public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Курсовая работа");
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-}
-    public void showCreateWindow(Dostizhenie dostizhenie) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("new.fxml"));
-            Parent page = loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Добавление...");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            dialogStage.setScene(new Scene(page));
-            // InputStream iconStream = getClass().getResourceAsStream("/recources/image/userIcon.png");
-            //Image image = new Image(iconStream);
-            //dialogStage.getIcons().add(image);
-            CreateController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            /*controller.setStory(story);*/
-    // dialogStage.showAndWait();
-    // } catch (IOException e) {
-    //   e.printStackTrace();
-    // }
-    //   }
 
 
 }

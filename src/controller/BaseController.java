@@ -117,14 +117,15 @@ public class BaseController implements Initializable {
     }
 
     public void email(ActionEvent actionEvent) {
+        String findString;
+        findString = name.getText();
         EmailAddress emailAddress = new EmailAddress();
-        emailAddress.emailaddress(anchorPane);
+        emailAddress.emailaddress(anchorPane, findString);
 
     }
 
     public void code(ActionEvent actionEvent) {
-        BarCode barCode = new BarCode();
-        barCode.barCode(anchorPane, images);
+
 
     }
 

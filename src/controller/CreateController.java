@@ -40,11 +40,13 @@ public class CreateController {
         FileChooser fileChooser = new FileChooser();//класс работы с диалоговым окном
         fileChooser.setTitle("Выберите файл...");//заголовок диалога
         //задает фильтр для указанного расшиерения
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.png"),
-                new FileChooser.ExtensionFilter("Файл", "*.jpg"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.jpg"),
+                new FileChooser.ExtensionFilter("Файл", "*.png"));
+        //url
         File file = fileChooser.showOpenDialog(ap.getScene().getWindow());
-         str = file.getPath();//получаем строку с путем к файлу
-        //System.out.println("" + str);
+         str =file.getPath();//получаем строку с путем к файлу
+        System.out.println("" + str);
+        //String str1=;
     }
 
     public void adud(ActionEvent actionEvent) {

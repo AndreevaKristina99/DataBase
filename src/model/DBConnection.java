@@ -98,12 +98,12 @@ import java.sql.*;
 public class DBConnection {
     // private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     //    jdbc:mysql://localhost:3306/kursov1
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/kursov1?serverTimezone=Europe/Moscow";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/kursov1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Europe/Moscow";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "1234";
     public static final String DBName = "dostixhenie";
-
     public static final class nameCol {
+
         public static final String ID = "id";
         public static final String NAMEDOSTIZHENIE = "NameDostizheniy";
         public static final String OPISANIE = "Opisanie";
