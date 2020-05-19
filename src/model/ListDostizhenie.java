@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +62,6 @@ public class ListDostizhenie {
         try {
 
             ResultSet rsQue = DBConnection.dbExecuteQuery(selectStmt);
-
             ObservableList<Dostizhenie> questListFind = FXCollections.observableArrayList();
             while (rsQue.next()) {
                 Dostizhenie que = getQuestionFromResultSet(rsQue);
@@ -78,7 +78,7 @@ public class ListDostizhenie {
 
     //поиск по ID
     public static ObservableList<Dostizhenie> searchDostizhenieWithId(int id) throws SQLException, ClassNotFoundException {
-        String selectStmt = "SELECT  * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.ID + " = " + id + ";";//ищем путь по ид
+        String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.ID + " = " + id + ";";//ищем путь по ид
         try {
             ResultSet rsQue = DBConnection.dbExecuteQuery(selectStmt);
             ObservableList<Dostizhenie> questListFind = FXCollections.observableArrayList();
@@ -92,9 +92,15 @@ public class ListDostizhenie {
                     + ". Method: searchDostizhenie");
             throw e;
         }
-
     }
+                            //нужно вернуть имя достижения по клику ////////////////////////////////////////
 
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
     //возвр одно поле имадже селектом ,где id =id в этом
     ///вернуть изображение достижения
     public static Image getImagesDostizhenie(int id) throws SQLException, ClassNotFoundException, FileNotFoundException {
@@ -109,16 +115,13 @@ public class ListDostizhenie {
             System.out.print("Ошибка получения изображения " + e + ". Method: imagesDostizhenie()");
             throw e;
         }
-
-
     }
 
     //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
     public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException {
         //INSERT INTO dostixhenie VALUES ((NameDostizheniy, Opisanie, DatePol, image)'ggg', 'jjj', '2020-02-02', 'C:\images\kursk1.JPG');
        // INSERT INTO dostixhenie (NameDostizheniy, Opisanie, DatePol, image) VALUES ('Gram', 'ds', '2020-02-02', 'C:\images\resurse\2.jpg')
-
-        String updateStmt = "INSERT INTO " + DBConnection.DBName + " (NameDostizheniy, Opisanie, DatePol, image) "+" VALUES (" + dostizhenie.record() + ");";
+       String updateStmt = "INSERT INTO " + DBConnection.DBName + " (NameDostizheniy, Opisanie, DatePol, image) "+" VALUES (" + dostizhenie.record() + ");";
         System.out.println(""+updateStmt);
         try {
             DBConnection.dbExecuteUpdate(updateStmt);

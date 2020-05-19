@@ -43,8 +43,9 @@ public class CreateController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.jpg"),
                 new FileChooser.ExtensionFilter("Файл", "*.png"));
         //url
+
         File file = fileChooser.showOpenDialog(ap.getScene().getWindow());
-         str =file.getPath();//получаем строку с путем к файлу
+         str =file.toURI().getPath();//получаем строку с путем к файлу
         System.out.println("" + str);
         //String str1=;
     }
@@ -62,11 +63,6 @@ public class CreateController {
             dostizhenie.setDateD(dateADD.getText());
         }
             dostizhenie.setImage(str);
-
-
-
-
-//System.out.println("name"  +name.getText() + opisanie.getText() + "date" + dated);
         dialogStage.close();
     }
 }
