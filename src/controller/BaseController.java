@@ -8,9 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,7 +23,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class BaseController implements Initializable {
@@ -37,10 +40,15 @@ public class BaseController implements Initializable {
     public TextField name;
     public ImageView images;
     public Canvas canvas;
+    public CheckBox rezumeChek;
+    public ListView listview;
+    public TableView tadWr;
+    public ArrayList<Dostizhenie> items=new ArrayList<>();
     Stage primaryStage;
     public AnchorPane anchorPane;
     Main main;
     private ObservableList<Dostizhenie> dostizhenieObservableList;//основной список отображения
+    private  ObservableList<Dostizhenie> newDostizhenie;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.main = new Main();
@@ -51,13 +59,11 @@ public class BaseController implements Initializable {
 
         dostizhenieObservableList = FXCollections.observableArrayList();
 
-        File file = new File("C:\\images\\ex.pdf");
-        Image image = new Image(file.toURI().toString());
-        images.setImage(image);
-        System.out.println(file);
+       // File file = new File("C:\\images\\ex.pdf");
+        //Image image = new Image(file.toURI().toString());
+        //images.setImage(image);
+        //System.out.println(file);
     }
-
-
     public void openSql(ActionEvent actionEvent) {
         try {
             dostizhenieObservableList = ListDostizhenie.searchList();
@@ -68,8 +74,6 @@ public class BaseController implements Initializable {
             e.printStackTrace();
         }
     }
-
-
     public void poisk(ActionEvent actionEvent) {
         String findString;
         findString = name.getText();
@@ -136,19 +140,51 @@ public class BaseController implements Initializable {
             try {
                 Image image = ListDostizhenie.getImagesDostizhenie(dostizhenie.getId());//передает ид в листдостижений
                 images.setImage(image);//получаем путь и выводим картинку в имаджвью
-               /* FadeTransition ft = new FadeTransition();
-                ft.setNode(images);
-                ft.setDuration(new Duration(2000));
-                ft.setFromValue(1.0);
-                ft.setToValue(0.0);
-                ft.setCycleCount(6);
-                ft.setAutoReverse(true);
-                images.setOnMouseClicked(me -> ft.play());
-              */
-            } catch (SQLException | ClassNotFoundException | FileNotFoundException e) {
+                      } catch (SQLException | ClassNotFoundException | FileNotFoundException e) {
                 System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
                 throw e;
             }
         } else System.out.println("Не выбрана строка в таблице!");
+
+        if(rezumeChek.isSelected()==true)//ставим галочку ипосле этого выбираем достижения для резюме
+        {
+              //получ ид выбранного элемента
+            if (dostizhenie != null) {//если не 0
+                try {
+
+                    dostizhenieObservableList= ListDostizhenie.searchDostizhenieWithId(dostizhenie.getId());//передает ид в листдостижений
+           items.add(dostizhenie);
+                 listview.getItems().add(dostizhenieObservableList.get(0).getNameD());
+
+                } catch (SQLException | ClassNotFoundException e) {
+                    System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
+                    throw e;
+                }
+            } else System.out.println("Не выбрана строка в таблице!");
+        }
+    }
+
+    public void rezume(ActionEvent actionEvent) throws IOException {//кнопка "составить резюме"
+        // передать в метод запись в файл класс лист достижений
+        //передать раз-мер эррей лист
+        //в методе вызвать системую дату и передать в файл
+        //в метод передать содержимое эррей листа
+        String fileName = "C:\\images\\test.txt";
+        String search = "вв";//
+        String replace = "число ПИ";//менять на строки из лист вью
+        Path path = Paths.get(fileName);
+        Files.write(path, new String(Files.readAllBytes(path)).replace(search, replace).getBytes());
+        Date date = new Date();
+        // Вывод текущей даты и времени с использованием toString()
+        System.out.println(date.toString());
+
+    }
+
+    public void del_dost(ActionEvent actionEvent) {//"кнопка для удаления выбранных достижений
+
+        int index=listview.getSelectionModel().getSelectedIndex();
+     items.remove(index);
+        listview.getItems().remove(index);
+        System.out.println(items.size());
     }
 }

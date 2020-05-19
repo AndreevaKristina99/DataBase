@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ap" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateController">
    <children>
-      <DatePicker fx:id="dated" layoutX="389.0" layoutY="71.0" />
-      <Label layoutX="54.0" layoutY="54.0" text="Название" />
-      <TextField fx:id="name" layoutX="177.0" layoutY="50.0" />
-      <TextField fx:id="opisanie" layoutX="177.0" layoutY="96.0" />
-      <Label layoutX="54.0" layoutY="100.0" text="Описание" />
-      <Label layoutX="416.0" layoutY="33.0" text="Дата" />
-      <Button layoutX="442.0" layoutY="138.0" mnemonicParsing="false" onAction="#files" text="Выбрать файл" />
-      <Button layoutX="252.0" layoutY="235.0" mnemonicParsing="false" onAction="#adud" text="Добавить" />
-      <TextField fx:id="dateADD" layoutX="177.0" layoutY="151.0" />
+      <Label layoutX="54.0" layoutY="54.0" text="Название">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <TextField fx:id="name" layoutX="187.0" layoutY="48.0" prefHeight="46.0" prefWidth="287.0" />
+      <TextField fx:id="opisanie" layoutX="183.0" layoutY="117.0" prefHeight="83.0" prefWidth="295.0" />
+      <Label layoutX="55.0" layoutY="117.0" text="Описание">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="70.0" layoutY="206.0" text="Дата">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Button layoutX="245.0" layoutY="293.0" mnemonicParsing="false" onAction="#files" text="Выбрать файл" />
+      <Button layoutX="257.0" layoutY="347.0" mnemonicParsing="false" onAction="#adud" text="Добавить" />
+      <TextField fx:id="dateADD" layoutX="183.0" layoutY="214.0" prefHeight="36.0" prefWidth="295.0" />
    </children>
 </AnchorPane>
