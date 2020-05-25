@@ -48,14 +48,14 @@ public class EmailAddress {
             FileChooser fileChooser = new FileChooser();//класс работы с диалоговым окном
             fileChooser.setTitle("Выберите файл...");//заголовок диалога
             //задает фильтр для указанного расшиерения
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.txt"),
-                    new FileChooser.ExtensionFilter("Файл", "*.docx"));
-            File file = fileChooser.showOpenDialog(ap.getScene().getWindow());
-            String str = file.getPath();//получаем строку с путем к файлу
-            System.out.println("" + str);
-            DataSource source = new FileDataSource(str);
+           // fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.txt"),
+             //       new FileChooser.ExtensionFilter("Файл", "*.docx"));
+            //File file = fileChooser.showOpenDialog(ap.getScene().getWindow());
+            //String str = file.getPath();//получаем строку с путем к файлу
+            //System.out.println("" + str);
+            DataSource source = new FileDataSource("C:\\images\\news3.txt");
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(str);
+            messageBodyPart.setFileName("C:\\images\\news3.txt");
             multipart.addBodyPart(messageBodyPart);
 
             message.setContent(multipart);

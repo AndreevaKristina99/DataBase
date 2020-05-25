@@ -20,27 +20,28 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane fx:id="anchorPane" prefHeight="663.0" prefWidth="1343.0">
+      <AnchorPane fx:id="anchorPane" prefHeight="829.0" prefWidth="1343.0">
          <children>
-            <TableView fx:id="tableD" layoutX="85.0" layoutY="114.0" onMouseClicked="#imTabOpen" prefHeight="540.0" prefWidth="592.0">
+            <TableView fx:id="tableD" layoutX="17.0" layoutY="114.0" onMouseClicked="#imTabOpen" prefHeight="645.0" prefWidth="806.0">
               <columns>
-                <TableColumn fx:id="idD" prefWidth="75.0" text="номер" />
-                <TableColumn fx:id="NameD" prefWidth="177.0" text="название" />
-                  <TableColumn fx:id="opisanieD" prefWidth="177.0" text="описание" />
-                  <TableColumn fx:id="DateD" prefWidth="162.0" text="дата получения" />
+                <TableColumn fx:id="idD" prefWidth="47.000030517578125" text="номер" />
+                <TableColumn fx:id="NameD" prefWidth="181.00001525878906" text="название" />
+                  <TableColumn fx:id="opisanieD" prefWidth="475.0" text="описание" />
+                  <TableColumn fx:id="DateD" prefWidth="103.0" text="дата получения" />
               </columns>
             </TableView>
-            <Button layoutX="426.0" layoutY="43.0" mnemonicParsing="false" onAction="#openSql" text="Заполнить" />
-            <TextField fx:id="name" layoutX="601.0" layoutY="27.0" prefHeight="25.0" prefWidth="287.0" />
-            <Button layoutX="426.0" layoutY="14.0" mnemonicParsing="false" onAction="#poisk" prefHeight="25.0" prefWidth="74.0" text="Найти" />
-            <Button layoutX="516.0" layoutY="14.0" mnemonicParsing="false" onAction="#M_delete" prefHeight="25.0" prefWidth="74.0" text="Удалить по названию" />
-            <Button layoutX="517.0" layoutY="43.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="74.0" text="Добавить" />
-            <ImageView fx:id="images" fitHeight="193.0" fitWidth="261.0" layoutX="744.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="220.0" layoutY="27.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" />
-            <Button layoutX="1072.0" layoutY="332.0" mnemonicParsing="false" onAction="#rezume" text="Составить резюме" />
-            <CheckBox fx:id="rezumeChek" layoutX="427.0" layoutY="84.0" mnemonicParsing="false" text="Составить резюме" />
-            <ListView fx:id="listview" layoutX="1020.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" />
-            <Button layoutX="1246.0" layoutY="129.0" mnemonicParsing="false" onAction="#del_dost" text="Удалить" />
+            <Button fx:id="Zapolnit" layoutX="426.0" layoutY="43.0" mnemonicParsing="false" onAction="#openSql" text="Заполнить" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="150.0" />
+            <TextField fx:id="name" layoutX="601.0" layoutY="27.0" prefHeight="25.0" prefWidth="708.0" AnchorPane.leftAnchor="50.0" />
+            <Button fx:id="namePoisk" layoutX="426.0" layoutY="14.0" mnemonicParsing="false" onAction="#poisk" prefHeight="25.0" prefWidth="74.0" text="Найти" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="50.0" />
+            <Button fx:id="Delit" layoutX="516.0" layoutY="14.0" mnemonicParsing="false" onAction="#M_delete" prefHeight="25.0" prefWidth="74.0" text="Удалить" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="250.0" />
+            <Button fx:id="ADD_dos" layoutX="517.0" layoutY="43.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="74.0" text="Добавить" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="350.0" />
+            <ImageView fx:id="images" fitHeight="486.0" fitWidth="423.0" layoutX="690.0" layoutY="100.0" onMouseClicked="#imClick" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="76.0" />
+            <Button fx:id="EmailOtpravka" layoutX="220.0" layoutY="27.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="160.0" />
+            <Button fx:id="SostavRezume" layoutX="1072.0" layoutY="332.0" mnemonicParsing="false" onAction="#rezume" text="Составить резюме" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="300.0" />
+            <CheckBox fx:id="rezumeChek" layoutX="427.0" layoutY="84.0" mnemonicParsing="false" text="Составить резюме" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="700.0" />
+            <ListView fx:id="listview" layoutX="1020.0" layoutY="84.0" prefHeight="127.0" prefWidth="448.0" AnchorPane.bottomAnchor="693.0" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="Del_is_spisock" layoutX="1246.0" layoutY="129.0" mnemonicParsing="false" onAction="#del_dost" text="Удалить из списка" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="30.0" />
+            <Button layoutX="656.0" layoutY="74.0" mnemonicParsing="false" onAction="#proverka" text="Button" />
          </children></AnchorPane>
    </children>
 </GridPane>
