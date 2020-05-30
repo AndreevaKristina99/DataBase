@@ -42,6 +42,7 @@ public class BaseController implements Initializable {
     public Button EmailOtpravka;
     public Button SostavRezume;
     public Button Del_is_spisock;
+    public TextField emails;
     Stage primaryStage;
     public AnchorPane anchorPane;
     Main main;
@@ -57,7 +58,7 @@ FileRezume fileRezume=new FileRezume();
         DateD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("DateD"));
         dostizhenieObservableList = FXCollections.observableArrayList();
         tableD.setFixedCellSize(40);
-        name.setTooltip(new Tooltip("Поле ввода для поиска по названию,для ввода электронного адреса получателя резюме"));
+        name.setTooltip(new Tooltip("Поле ввода для поиска по названию"));
         namePoisk.setTooltip(new Tooltip("Кнопка для поиска достижения по названия"));
         Zapolnit.setTooltip(new Tooltip("Вывод всех достижений из базы данных"));
         Delit.setTooltip(new Tooltip("Удаление выбранного достижения из таблицы"));
@@ -67,7 +68,7 @@ FileRezume fileRezume=new FileRezume();
         EmailOtpravka.setTooltip(new Tooltip("Перед отправкой файла введите адрес получателя в текстовое поле!Составленное Вами резюме отправится по этому адресу"));
         listview.setTooltip(new Tooltip("Отображение списка выбранных достижений для добавления"));
         Del_is_spisock.setTooltip(new Tooltip("Если Вы по ошибке добавили какое-либо достижение в список для резюме,то выберите его из списка и нажмите эту кнопку "));
-
+emails.setTooltip(new Tooltip("Поле для ввода электронного адреса адресата"));
     }
     public void openSql(ActionEvent actionEvent) {
         try {
@@ -127,11 +128,11 @@ FileRezume fileRezume=new FileRezume();
 
     public void email(ActionEvent actionEvent) {
         String findString;
-        findString = name.getText();
+        findString = emails.getText();
         Pattern pattern = Pattern.compile("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}");
         Matcher matcher = pattern.matcher(findString);
         boolean matches = matcher.matches();
-        if(matches==false)
+        if(matches==false )
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ошибка!");
@@ -144,6 +145,12 @@ FileRezume fileRezume=new FileRezume();
         else {
             EmailAddress emailAddress = new EmailAddress();
             emailAddress.emailaddress(anchorPane, findString);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Инфрмация об отправке");
+            alert.setHeaderText(null);
+            alert.setContentText("Письмо отправлено!");
+
+            alert.showAndWait();
         }
     }
 
@@ -168,15 +175,21 @@ FileRezume fileRezume=new FileRezume();
 
         if(rezumeChek.isSelected()==true)//ставим галочку ипосле этого выбираем достижения для резюме
         {
-              //получ ид выбранного элемента
             if (dostizhenie != null) {//если не 0
                 try {
                  dostizhenieObservableList= ListDostizhenie.searchDostizhenieWithId(dostizhenie.getId());//передает ид в листдостижений
 
                     fileRezume.addD(String.valueOf(dostizhenie.getOpisanieD()));
               //   dosStr.add(String.valueOf(dostizhenie.getOpisanieD()));
+                    listview.getItems().add(String.valueOf(dostizhenie.getOpisanieD()));
+                    System.out.println(fileRezume.toString());
+                    //fileRezume.arrayToListView(listview);
 
-              listview.getItems().add(fileRezume.array());
+                //
+
+              //     fileRezume.array(listview);
+
+
                 } catch (SQLException | ClassNotFoundException e) {
                     System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
                     throw e;
@@ -186,56 +199,7 @@ FileRezume fileRezume=new FileRezume();
     }
 
     public void rezume(ActionEvent actionEvent) throws IOException {//кнопка "составить резюме"
-      /*  String fileReadName = "C:\\images\\test3.txt";
-        String fileWriteName = "C:\\images\\news3.txt";
-        try {
-            FileReader fin = new FileReader(fileReadName);
-            Scanner scanner = new Scanner(fin);
-            FileWriter writer = new FileWriter(fileWriteName);
-            System.out.println(dosStr.size()+"размер листа");
-            String search = "кол";//что меняем
-            String replace = String.valueOf(dosStr.size());//на что мняем
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-            LocalDate date = LocalDate.now();
-            String text = date.format(formatter);
-            LocalDate parsedDate = LocalDate.parse(text, formatter);
-            String datesys=text;
-            String sysDate="sysdate";
-            String nazvanie="название";
-            String nazvZamena=dosStr.toString();
 
-            while (scanner.hasNext()) {
-                String line = scanner.nextLine();
-
-                System.out.println(line);
-                line = line.replaceAll(search, replace);
-                line=line.replaceAll(sysDate,datesys);
-                line=line.replaceAll(nazvanie,nazvZamena);
-                try {
-                    writer.write(line + "\r\n");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            scanner.close();
-            writer.flush();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String testFilePath = "C:\\images\\news3.txt";
-        try {
-
-            Process process = Runtime.getRuntime().exec("cmd /c notepad.exe " + testFilePath);
-            process.waitFor();
-        } catch ( Exception ex ) {
-            ex.printStackTrace();
-        }
-
-       */
-      FileRezume fileRezume=new FileRezume();
       fileRezume.FilesRezume();
 
 
@@ -244,9 +208,13 @@ FileRezume fileRezume=new FileRezume();
     public void del_dost(ActionEvent actionEvent) {//"кнопка для удаления выбранных достижений
 
         int index=listview.getSelectionModel().getSelectedIndex();
-        fileRezume.remuveD(index);
-       // dosStr.remove(index);
-        listview.getItems().remove(index);
+       listview.getItems().remove(index);
+
+         fileRezume.remuveD(index);
+
+       //dosStr.remove(index);
+      //  listview.getItems().remove(fileRezume.array());
+
         }
 
     public void imClick(MouseEvent mouseEvent) {
@@ -262,25 +230,8 @@ FileRezume fileRezume=new FileRezume();
     }
 
     public void proverka(ActionEvent actionEvent) {
-        // проверка почты
-        String findString;
-        findString = name.getText();
-        Pattern pattern = Pattern.compile("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}");
-        Matcher matcher = pattern.matcher(findString);
-        boolean matches = matcher.matches();
-        if(matches==false)
-        {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ошибка!");
-            alert.setHeaderText(null);
-            alert.setContentText("Введите адрес получателя в текстовое поле!");
-
-            alert.showAndWait();
-        }
-        else {
-            System.out.print("все оки!");
-        }
-    }
+System.out.println(fileRezume.sizeD());
+}
     }
 
 

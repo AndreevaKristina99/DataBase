@@ -39,9 +39,9 @@
             <Button fx:id="EmailOtpravka" layoutX="220.0" layoutY="27.0" mnemonicParsing="false" onAction="#email" text="Отправить на почту" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="160.0" />
             <Button fx:id="SostavRezume" layoutX="1072.0" layoutY="332.0" mnemonicParsing="false" onAction="#rezume" text="Составить резюме" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="300.0" />
             <CheckBox fx:id="rezumeChek" layoutX="427.0" layoutY="84.0" mnemonicParsing="false" text="Составить резюме" AnchorPane.bottomAnchor="730.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="700.0" />
-            <ListView fx:id="listview" layoutX="1020.0" layoutY="84.0" prefHeight="127.0" prefWidth="448.0" AnchorPane.bottomAnchor="693.0" AnchorPane.rightAnchor="50.0" />
+            <ListView fx:id="listview" layoutX="1020.0" layoutY="84.0" prefHeight="99.0" prefWidth="486.0" AnchorPane.bottomAnchor="721.0" AnchorPane.rightAnchor="31.0" />
             <Button fx:id="Del_is_spisock" layoutX="1246.0" layoutY="129.0" mnemonicParsing="false" onAction="#del_dost" text="Удалить из списка" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="30.0" />
-            <Button layoutX="656.0" layoutY="74.0" mnemonicParsing="false" onAction="#proverka" text="Button" />
+            <TextField fx:id="emails" layoutX="894.0" layoutY="123.0" prefHeight="25.0" prefWidth="364.0" />
          </children></AnchorPane>
    </children>
 </GridPane>

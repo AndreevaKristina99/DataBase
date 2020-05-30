@@ -90,11 +90,8 @@ private  static  Connection getDBConnection()
 }
 */
 package model;
-
 import com.sun.rowset.CachedRowSetImpl;
-
 import java.sql.*;
-
 public class DBConnection {
     // private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     //    jdbc:mysql://localhost:3306/kursov1
@@ -103,14 +100,12 @@ public class DBConnection {
     private static final String DB_PASSWORD = "1234";
     public static final String DBName = "dostixhenie";
     public static final class nameCol {
-
         public static final String ID = "id";
         public static final String NAMEDOSTIZHENIE = "NameDostizheniy";
         public static final String OPISANIE = "Opisanie";
         public static final String DATEPOL = "DatePol";
         public static final String IMAGES = "image";
     }
-
     //соеденяемся
     private static Connection getDBConnection() {
         Connection dbConnection = null;
@@ -123,7 +118,6 @@ public class DBConnection {
         }
         return dbConnection;
     }
-
     //запрос бд
     public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {
         //Declare statement, resultSet and CachedResultSet as null
@@ -154,16 +148,13 @@ public class DBConnection {
         }
         return crs;
     }
-
     //обновление бд
     public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
         Connection dbConnection = null;
         Statement statement = null;
         try {
             dbConnection = getDBConnection();
-
             statement = dbConnection.createStatement();
-
             statement.executeUpdate(sqlStmt);
         } catch (SQLException e) {
             System.out.println("Problem occurred at executeUpdate operation : " + e + ". Method: dbExecuteUpdate()");

@@ -1,10 +1,6 @@
 package model;
-
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import sun.plugin.javascript.navig.Anchor;
-
-import java.io.File;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -14,12 +10,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-
 public class EmailAddress {
-
     public void emailaddress(AnchorPane ap,String emAddress) {
-
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.yandex.ru");
         properties.put("mail.smtp.socketFactory.port", 465);
@@ -32,8 +24,6 @@ public class EmailAddress {
                         return new PasswordAuthentication("andreeva.cr1stin@yandex.ru", "Andr!1999");
                     }
                 });
-
-
         try {
             Message message = new MimeMessage(s);
             message.setFrom(new InternetAddress("andreeva.cr1stin@yandex.ru"));//
@@ -41,23 +31,14 @@ public class EmailAddress {
             message.setSubject("Резюме_Андреева К.А.");//тема письма
             message.setText("Проверка отправки письма");//текст письма
             MimeBodyPart messageBodyPart = new MimeBodyPart();
-
             Multipart multipart = new MimeMultipart();
-
             messageBodyPart = new MimeBodyPart();
             FileChooser fileChooser = new FileChooser();//класс работы с диалоговым окном
             fileChooser.setTitle("Выберите файл...");//заголовок диалога
-            //задает фильтр для указанного расшиерения
-           // fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Файл", "*.txt"),
-             //       new FileChooser.ExtensionFilter("Файл", "*.docx"));
-            //File file = fileChooser.showOpenDialog(ap.getScene().getWindow());
-            //String str = file.getPath();//получаем строку с путем к файлу
-            //System.out.println("" + str);
             DataSource source = new FileDataSource("C:\\images\\news3.txt");
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("C:\\images\\news3.txt");
             multipart.addBodyPart(messageBodyPart);
-
             message.setContent(multipart);
             Transport.send(message);
             System.out.println("Письмо отправлено");

@@ -1,6 +1,4 @@
-
 package controller;
-
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -10,14 +8,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Dostizhenie;
 import sample.Main;
-
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class CreateController {
-
-
     public TextField name;
     public TextField opisanie;
     public DatePicker dated;

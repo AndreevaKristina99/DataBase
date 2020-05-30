@@ -1,5 +1,4 @@
 package model;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,10 +7,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class FileRezume {
-    ArrayList<String> Dost=new ArrayList<>();
-
+private   ArrayList<String> Dost=new ArrayList<>();
+    public ArrayList<String> getDost() {
+        return Dost;
+    }
+    public void setDost(ArrayList<String> dost) {
+        Dost = dost;
+    }
     public  void  addD(String nameD)
     {
         Dost.add(nameD);
@@ -20,22 +23,28 @@ public class FileRezume {
     {
         Dost.remove(index);
     }
-public ArrayList<String> array()
-{
-   return  this.Dost;
+    public int sizeD()
+    {
+        return Dost.size();
+    }
+public  String toString() {
+    String str = "";
+    for (int i=0;i<Dost.size();i++) {
+       str +=  Dost.get(i) + ", ";
+    }
+    return str.substring(0, str.length() - 2);
 }
     public void FilesRezume() {
-
         String fileReadName = "C:\\images\\test3.txt";
         String fileWriteName = "C:\\images\\news3.txt";
-        String nazvZamena="";
         try {
             FileReader fin = new FileReader(fileReadName);
             Scanner scanner = new Scanner(fin);
             FileWriter writer = new FileWriter(fileWriteName);
+            System.out.println(sizeD() + "размер листа");
             System.out.println(Dost.size() + "размер листа");
-            String search = "кол";//что меняем
-            String replace = String.valueOf(Dost.size());//на что мняем
+            String search = "kol";//что меняем
+            String replace = String.valueOf(sizeD());//на что мняем
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             LocalDate date = LocalDate.now();
             String text = date.format(formatter);
@@ -43,12 +52,7 @@ public ArrayList<String> array()
             String datesys = text;
             String sysDate = "sysdate";
             String nazvanie = "название";
-            for(int i=0;i<Dost.size();i++) {
-                /*
-                проверить добавление в файл
-                 */
-                nazvanie = Dost.get(i);
-            }
+            String nazvZamena=toString();
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
 
@@ -62,7 +66,6 @@ public ArrayList<String> array()
                     ex.printStackTrace();
                 }
             }
-
             scanner.close();
             writer.flush();
         } catch (FileNotFoundException e) {

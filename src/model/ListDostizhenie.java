@@ -1,17 +1,11 @@
 package model;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
-import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 public class ListDostizhenie {
     //формирует экземпляр списка достижений из вернувшегося ответа
     private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLException {
@@ -76,7 +70,7 @@ public class ListDostizhenie {
 
     }
 
-    //поиск по ID
+    //поиск по id
     public static ObservableList<Dostizhenie> searchDostizhenieWithId(int id) throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.ID + " = " + id + ";";//ищем путь по ид
         try {
@@ -93,17 +87,7 @@ public class ListDostizhenie {
             throw e;
         }
     }
-                            //нужно вернуть имя достижения по клику ////////////////////////////////////////
-
-
-
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    //возвр одно поле имадже селектом ,где id =id в этом
-    ///вернуть изображение достижения
-    public static Image getImagesDostizhenie(int id) throws SQLException, ClassNotFoundException, FileNotFoundException {
+         public static Image getImagesDostizhenie(int id) throws SQLException, ClassNotFoundException, FileNotFoundException {
 
         try {
             Dostizhenie dostizhenie = searchDostizhenieWithId(id).get(0);//
@@ -117,7 +101,7 @@ public class ListDostizhenie {
         }
     }
 
-    //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле
     public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException {
         //INSERT INTO dostixhenie VALUES ((NameDostizheniy, Opisanie, DatePol, image)'ggg', 'jjj', '2020-02-02', 'C:\images\kursk1.JPG');
        // INSERT INTO dostixhenie (NameDostizheniy, Opisanie, DatePol, image) VALUES ('Gram', 'ds', '2020-02-02', 'C:\images\resurse\2.jpg')
