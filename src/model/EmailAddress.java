@@ -11,7 +11,18 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 public class EmailAddress {
+    /**
+     * класс который позволяет отправлять составленное резюме на указанную электроннуб почту
+     * @param ap
+     * @param emAddress
+     */
     public void emailaddress(AnchorPane ap,String emAddress) {
+        /**
+         * устанавливаем моединение по протоколу smtp
+         * указываем параметры почты с которой будет отправлено письмо
+         * в качетсве параметра принимает адрес получателя
+         * путь к файлу указывается статически
+         */
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.yandex.ru");
         properties.put("mail.smtp.socketFactory.port", 465);

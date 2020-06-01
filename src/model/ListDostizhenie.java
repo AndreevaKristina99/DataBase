@@ -7,8 +7,19 @@ import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class ListDostizhenie {
-    //формирует экземпляр списка достижений из вернувшегося ответа
-    private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLException {
+    /**
+     * класс содержащий методы для работы с информацией из бд
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+
+    private static Dostizhenie getQuestionFromResultSet(ResultSet rs) throws SQLException
+    {
+        /**
+         * формирует экземпляр списка достижений из вернувшегося ответа
+         */
+
         Dostizhenie dostizhenie = new Dostizhenie(1, "jj", "hhh", "2020", "kk.jpg");
         dostizhenie.setId(rs.getInt(DBConnection.nameCol.ID));
         dostizhenie.setNameD(rs.getString(DBConnection.nameCol.NAMEDOSTIZHENIE));
@@ -19,9 +30,11 @@ public class ListDostizhenie {
         return dostizhenie;
     }
 
-    //получим весь список достижений
-    public static ObservableList<Dostizhenie> searchList() throws SQLException, ClassNotFoundException {
 
+    public static ObservableList<Dostizhenie> searchList() throws SQLException, ClassNotFoundException {
+/**
+ * метод для получения списка достижений
+ */
         String selectStmt = "SELECT * FROM " + DBConnection.DBName + ";";
         try {
             ResultSet rs = DBConnection.dbExecuteQuery(selectStmt);
@@ -37,8 +50,13 @@ public class ListDostizhenie {
         }
     }
 
-    // yдаление  из бд||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-    public static void deleteDostizhenie(String NameD) throws SQLException, ClassNotFoundException {
+
+    public static void deleteDostizhenie(String NameD) throws SQLException, ClassNotFoundException
+    /**
+     * метод для удаления записей из бд
+     * в качетсве параметра прнимает id достижения
+     */
+    {
         //Declare a DELETE statement
         String updateStmt = "DELETE FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " = '" + NameD + "';";
         try {
@@ -49,9 +67,11 @@ public class ListDostizhenie {
         }
     }
 
-    //поиск по NameD
-    public static ObservableList<Dostizhenie> searchDostizhenieWithNameD(String questionSelect) throws SQLException, ClassNotFoundException {
 
+    public static ObservableList<Dostizhenie> searchDostizhenieWithNameD(String questionSelect) throws SQLException, ClassNotFoundException {
+/**
+ * метод для поиска достижений по названию
+ */
         String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.NAMEDOSTIZHENIE + " = '" + questionSelect + "';";
         try {
 
@@ -72,6 +92,11 @@ public class ListDostizhenie {
 
     //поиск по id
     public static ObservableList<Dostizhenie> searchDostizhenieWithId(int id) throws SQLException, ClassNotFoundException {
+        /**
+         * метод для поиска по id достижения
+         * принимает id
+         * возвращет путь изображения
+         */
         String selectStmt = "SELECT * FROM " + DBConnection.DBName + " WHERE " + DBConnection.nameCol.ID + " = " + id + ";";//ищем путь по ид
         try {
             ResultSet rsQue = DBConnection.dbExecuteQuery(selectStmt);
@@ -88,7 +113,6 @@ public class ListDostizhenie {
         }
     }
          public static Image getImagesDostizhenie(int id) throws SQLException, ClassNotFoundException, FileNotFoundException {
-
         try {
             Dostizhenie dostizhenie = searchDostizhenieWithId(id).get(0);//
             String path = dostizhenie.getImage();//получаем строку с путем к файлу
@@ -101,8 +125,13 @@ public class ListDostizhenie {
         }
     }
 
-    //вставка данных в БД на основе экзмепляра question. ID - автоинкрементное поле
-    public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException {
+
+    public static void insertDostizhenie(Dostizhenie dostizhenie) throws SQLException, ClassNotFoundException
+    { /**
+     *
+     * метод для вставки данных в БД на основе экзмепляра question.
+     * ID - автоинкрементное поле
+     */
         //INSERT INTO dostixhenie VALUES ((NameDostizheniy, Opisanie, DatePol, image)'ggg', 'jjj', '2020-02-02', 'C:\images\kursk1.JPG');
        // INSERT INTO dostixhenie (NameDostizheniy, Opisanie, DatePol, image) VALUES ('Gram', 'ds', '2020-02-02', 'C:\images\resurse\2.jpg')
        String updateStmt = "INSERT INTO " + DBConnection.DBName + " (NameDostizheniy, Opisanie, DatePol, image) "+" VALUES (" + dostizhenie.record() + ");";

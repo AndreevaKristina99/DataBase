@@ -23,6 +23,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BaseController implements Initializable {
+    /**
+     * BaseController – класс для обработки событий объектов Scene Builder главного окна программного продукта
+     * @author Kristina Andreeva
+     *  *@version 1.2
+     */
     public TableColumn DateD;
     public TableColumn opisanieD;
     public TableColumn NameD;
@@ -51,6 +56,9 @@ public class BaseController implements Initializable {
 FileRezume fileRezume=new FileRezume();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /**
+         * Вызывается для инициализации контроллера после того, как его корневой элемент был полностью обработан
+         */
         this.main = new Main();
         idD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("id"));
         NameD.setCellValueFactory(new PropertyValueFactory<Dostizhenie, String>("NameD"));
@@ -71,6 +79,9 @@ FileRezume fileRezume=new FileRezume();
 emails.setTooltip(new Tooltip("Поле для ввода электронного адреса адресата"));
     }
     public void openSql(ActionEvent actionEvent) {
+        /**
+         * метод для заполнения таблицы личными достижениями из базы данных
+         */
         try {
             dostizhenieObservableList = ListDostizhenie.searchList();
             tableD.setItems(dostizhenieObservableList);
@@ -80,7 +91,14 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
             e.printStackTrace();
         }
     }
-    public void poisk(ActionEvent actionEvent) {
+    public void poisk(ActionEvent actionEvent)
+        {
+            /**
+             * обработчкик кнопки "Поиск"
+             * в качестве параметра принимает строку из тектстового поля
+             * возвращает найденное личное достижение
+             */
+
         String findString;
         findString = name.getText();
         dostizhenieObservableList.removeAll();
@@ -96,7 +114,11 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
     }
 
 
-    public void M_delete(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void M_delete(ActionEvent actionEvent) throws SQLException, ClassNotFoundException
+    /**
+     * Обработка события нажатия кнопки «Удалить»;
+     */
+    {
         Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();
         if (dostizhenie != null) {
             try {
@@ -112,6 +134,10 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
     }
 
     public void add(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
+        /**
+         * Обработка события нажатия кнопки «Добавить»
+         * при нажатии кнопки открывается новая форма для добавления
+         */
         Dostizhenie dostizhenie = new Dostizhenie(1, "1", "1", "1", "1");
         main.showCreateWindow(dostizhenie);
         try {
@@ -127,6 +153,14 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
     }
 
     public void email(ActionEvent actionEvent) {
+        /**
+         * Обработка события нажатия кнопки «Отправить на почту»
+         * в качестве параметра принимается значение из текстового паля
+         * проверяется регулярным выражением
+         * после проверки пользователь видит соощение об отправке или не отпрвке письма
+         *
+         *
+         */
         String findString;
         findString = emails.getText();
         Pattern pattern = Pattern.compile("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}");
@@ -161,7 +195,14 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
 
     public void imTabOpen(MouseEvent mouseEvent) throws FileNotFoundException, SQLException, ClassNotFoundException {
 
-
+/**
+ * - Обработка события нажатия на таблицу для просмотра изображения;
+ * пользователь мышью выбирает строку  с личным достижением
+ * id достижения передается в метод getImagesDostizheni для получения пути файла
+ * файл интерпретируется в imageView
+ * если пользователь хочет составить резюме,то ему необходимо поставить галочку "Составить резюме"
+ * и выбирать достижения, которые будут добавляться в arraylist  для добавления в шаблон и составления резюме
+ */
         Dostizhenie dostizhenie = (Dostizhenie) tableD.getSelectionModel().getSelectedItem();//получаем выбр элем
         if (dostizhenie != null) {//если не 0
             try {
@@ -183,12 +224,6 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
               //   dosStr.add(String.valueOf(dostizhenie.getOpisanieD()));
                     listview.getItems().add(String.valueOf(dostizhenie.getOpisanieD()));
                     System.out.println(fileRezume.toString());
-                    //fileRezume.arrayToListView(listview);
-
-                //
-
-              //     fileRezume.array(listview);
-
 
                 } catch (SQLException | ClassNotFoundException e) {
                     System.out.println("Произошла следующая ошибка при получение изображения из БД: " + e.getMessage());
@@ -199,14 +234,21 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
     }
 
     public void rezume(ActionEvent actionEvent) throws IOException {//кнопка "составить резюме"
-
+/**
+ * Обработка события нажатия кнопки «Составить резюме»
+ * вызов метода FilesRezume() из клааса FileRezume
+ */
       fileRezume.FilesRezume();
 
 
     }
 
-    public void del_dost(ActionEvent actionEvent) {//"кнопка для удаления выбранных достижений
+    public void del_dost(ActionEvent actionEvent) {
 
+        /**
+         * удаление достижений из arraylist, которые в последующем передаются длЯ составления резюме
+         * кнопка для удаления выбранных достижений
+         */
         int index=listview.getSelectionModel().getSelectedIndex();
        listview.getItems().remove(index);
 
@@ -218,6 +260,11 @@ emails.setTooltip(new Tooltip("Поле для ввода электронног
         }
 
     public void imClick(MouseEvent mouseEvent) {
+        /**
+         * обработчик события нажатия на элемет imageview
+         * при начатии 1 раз увеличивает изображение
+         * возвращение в первоначальное полложение- нажать 2 раза
+         */
         if(mouseEvent.getClickCount()==1) {
             images.setScaleX(1.3);
             images.setScaleY(1.3);

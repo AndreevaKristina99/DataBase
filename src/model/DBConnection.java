@@ -95,6 +95,11 @@ import java.sql.*;
 public class DBConnection {
     // private static final String DB_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     //    jdbc:mysql://localhost:3306/kursov1
+    /**
+     * класс для установления соединения проекта и базу данных
+     * далее приводится описание основных параметров для соединения
+     *
+     */
     private static final String DB_URL = "jdbc:mysql://localhost:3306/kursov1?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=Europe/Moscow";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "1234";
@@ -108,6 +113,10 @@ public class DBConnection {
     }
     //соеденяемся
     private static Connection getDBConnection() {
+        /**
+         * метод устанвливающий соединение
+         * в качестве паареметров передается название бд,логин и пароль пользователя
+         */
         Connection dbConnection = null;
         try {
             dbConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -121,6 +130,9 @@ public class DBConnection {
     //запрос бд
     public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {
         //Declare statement, resultSet and CachedResultSet as null
+        /**
+         * метод для отправки запроса к бд
+         */
         Connection dbConnection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -150,6 +162,10 @@ public class DBConnection {
     }
     //обновление бд
     public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
+        /**
+         * метод который необходим для добавлении и удаленнии записей из бд
+         * обновляет бд
+         */
         Connection dbConnection = null;
         Statement statement = null;
         try {

@@ -7,8 +7,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * <h1>Класс FileRezume</h1>
+ *этот класс предназначен для формирования файла резюме, на основе шаблона
+ * @author Kristina Andreeva
+ * @version 1.2
+ */
 public class FileRezume {
-private   ArrayList<String> Dost=new ArrayList<>();
+    /**
+     *
+     */
+    private   ArrayList<String> Dost=new ArrayList<>();
     public ArrayList<String> getDost() {
         return Dost;
     }
@@ -25,9 +35,16 @@ private   ArrayList<String> Dost=new ArrayList<>();
     }
     public int sizeD()
     {
+        /**
+         * возвращает размер arraylist
+         */
         return Dost.size();
     }
 public  String toString() {
+    /**
+     * этот метод возвращает элементы эррайлист
+     * @return список достижений через разделитель ","
+     */
     String str = "";
     for (int i=0;i<Dost.size();i++) {
        str +=  Dost.get(i) + ", ";
@@ -35,6 +52,14 @@ public  String toString() {
     return str.substring(0, str.length() - 2);
 }
     public void FilesRezume() {
+        /**
+         *
+         * этот метод производит перезапись шаблона файла test3.txt в файл news3.txt
+         * с заменой ключевых слов в шаблоне на выбранные параметры
+         * передается системная дата,для указания,когда составлено резюме
+         * далее,для корректирровки открывается программа "Блокнот" для просмотра сформированного содержимого
+         *
+         */
         String fileReadName = "C:\\images\\test3.txt";
         String fileWriteName = "C:\\images\\news3.txt";
         try {

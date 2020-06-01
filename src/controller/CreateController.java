@@ -10,6 +10,10 @@ import model.Dostizhenie;
 import sample.Main;
 import java.io.File;
 public class CreateController {
+    /**
+     *  класс для обработки событий объектов Scene Builder окна программного продукта для добавоения достижений
+     *
+     */
     public TextField name;
     public TextField opisanie;
     public DatePicker dated;
@@ -29,6 +33,10 @@ public class CreateController {
     }
 
     public void files(ActionEvent actionEvent) {
+        /**
+         * обработчик события для выбора файла для добавления
+         * принимает параметр пути
+         */
         FileChooser fileChooser = new FileChooser();//класс работы с диалоговым окном
         fileChooser.setTitle("Выберите файл...");//заголовок диалога
         //задает фильтр для указанного расшиерения
@@ -43,6 +51,10 @@ public class CreateController {
     }
 
     public void adud(ActionEvent actionEvent) {
+        /**
+         * обработчик события для добавления достижени яв базу данных
+         * приниает ппарметры -название,описание,путь файла, дату
+         */
         System.out.println("" + str);
        if (name != null && !name.getText().isEmpty()) {
             dostizhenie.setNameD(name.getText());

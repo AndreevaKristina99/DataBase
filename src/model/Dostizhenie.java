@@ -7,6 +7,10 @@ import javafx.beans.value.ObservableBooleanValue;
 import java.util.Date;
 
 public class Dostizhenie {
+    /**
+     * класс для создания модели в которой будут хранится данные о личных достижениях
+     *
+     */
     SimpleIntegerProperty id;
     SimpleStringProperty NameDostizheniy;
     SimpleStringProperty Opisanie;
@@ -14,6 +18,9 @@ public class Dostizhenie {
     SimpleStringProperty image;
 
     public Dostizhenie(int id, String nameD, String opisanieD, String dateD, String image) {
+        /**
+         * конструктор с параметрами
+         */
         this.id = new SimpleIntegerProperty(id);
         this.NameDostizheniy = new SimpleStringProperty(nameD);
         this.Opisanie = new SimpleStringProperty(opisanieD);
@@ -22,6 +29,10 @@ public class Dostizhenie {
 
     }
 
+    /**
+     * далеее приводятся get и  set для получения и записи данных переменных
+     *
+     */
     public int getId() {
 
         return id.get();
@@ -84,6 +95,7 @@ public class Dostizhenie {
     }
 
     public String record() {
+
         return /*"(NameDostizheniy, Opisanie, DatePol, image)"*/
                 "'" + getNameD() + "', "
                 + "'" + getOpisanieD() + "', "
